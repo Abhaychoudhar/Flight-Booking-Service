@@ -2,6 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 const { Enums } = require("../utils/helpers");
 const { BOOKED, CANCELLED, PENDING, INITIATED } = Enums.BookingStatus;
+const dt = new Date() ;
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Bookings', {
@@ -36,11 +37,14 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+       type: Sequelize.DATE,
+        defaultValue : dt
+         
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue : dt
       }
     });
   },
